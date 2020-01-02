@@ -64,27 +64,32 @@ resetButton.addEventListener('click', function () {
 
 })
 
-colorcolorDisplay.textContent = pickedColor;
+init();
 
-for (let i = 0; i < squares.length; i++) {
-  //add initial colors to squares
-  squares[i].style.backgroundColor = colors[i];
+function init() {
+  colorcolorDisplay.textContent = pickedColor;
 
-  squares[i].addEventListener('click', function () {
-    let clickedColor = this.style.backgroundColor;
+  for (let i = 0; i < squares.length; i++) {
+    //add initial colors to squares
+    squares[i].style.backgroundColor = colors[i];
 
-    if (clickedColor === pickedColor) {
-      messageDisplay.textContent = 'Correct';
-      h1.style.backgroundColor = clickedColor;
-      changeColors(clickedColor);
-      resetButton.textContent = 'Play Again';
-    } else {
-      this.style.backgroundColor = '#232323';
-      this.style.visibility = 'hidden';
-      messageDisplay.textContent = 'Try Again';
+    squares[i].addEventListener('click', function () {
+      let clickedColor = this.style.backgroundColor;
 
-    }
-  })
+      if (clickedColor === pickedColor) {
+        messageDisplay.textContent = 'Correct';
+        h1.style.backgroundColor = clickedColor;
+        changeColors(clickedColor);
+        resetButton.textContent = 'Play Again';
+      } else {
+        this.style.backgroundColor = '#232323';
+        this.style.visibility = 'hidden';
+        messageDisplay.textContent = 'Try Again';
+
+      }
+    })
+  }
+
 }
 
 function changeColors(color) {
