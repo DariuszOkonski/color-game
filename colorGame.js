@@ -1,4 +1,5 @@
-let colors = generateRandomColor(6);
+let numSquares = 6;
+let colors = generateRandomColor(numSquares);
 
 let squares = document.querySelectorAll('.square');
 let pickedColor = pickColor();
@@ -6,11 +7,52 @@ let colorcolorDisplay = document.getElementById('colorDisplay');
 let messageDisplay = document.querySelector('#message');
 let h1 = document.querySelector('h1');
 let resetButton = document.querySelector('#reset');
+let easyBtn = document.querySelector('#easyBtn');
+let hardBtn = document.querySelector('#hardBtn');
+
+easyBtn.addEventListener('click', function () {
+  numSquares = 3;
+  easyBtn.classList.add('selected');
+  hardBtn.classList.remove('selected');
+
+  messageDisplay.textContent = '';
+  h1.style.backgroundColor = "#232323";
+  colors = generateRandomColor(numSquares);
+  pickedColor = pickColor();
+  colorcolorDisplay.textContent = pickedColor;
+
+  for (let i = 0; i < squares.length; i++) {
+    if (colors[i]) {
+      squares[i].style.backgroundColor = colors[i];
+    } else {
+      squares[i].style.display = 'none';
+    }
+  }
+
+});
+
+hardBtn.addEventListener('click', function () {
+  numSquares = 6;
+  hardBtn.classList.add('selected');
+  easyBtn.classList.remove('selected');
+
+  messageDisplay.textContent = '';
+  h1.style.backgroundColor = "#232323";
+  colors = generateRandomColor(numSquares);
+  pickedColor = pickColor();
+  colorcolorDisplay.textContent = pickedColor;
+
+  for (let i = 0; i < squares.length; i++) {
+    squares[i].style.backgroundColor = colors[i];
+    squares[i].style.display = 'block';
+  }
+
+})
 
 resetButton.addEventListener('click', function () {
   resetButton.textContent = 'New Colors';
   messageDisplay.textContent = '';
-  colors = generateRandomColor(6);
+  colors = generateRandomColor(numSquares);
   pickedColor = pickColor();
   colorcolorDisplay.textContent = pickedColor;
   h1.style.backgroundColor = "#232323";
@@ -19,6 +61,7 @@ resetButton.addEventListener('click', function () {
     squares[i].style.backgroundColor = colors[i];
     squares[i].style.visibility = 'visible';
   }
+
 })
 
 colorcolorDisplay.textContent = pickedColor;
@@ -40,7 +83,6 @@ for (let i = 0; i < squares.length; i++) {
       this.style.visibility = 'hidden';
       messageDisplay.textContent = 'Try Again';
 
-      console.log('false');
     }
   })
 }
