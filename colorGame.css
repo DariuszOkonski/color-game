@@ -21,4 +21,5 @@ h1 {
   background-color: purple;
   float: left;
   margin: 1.66%;
+  cursor: pointer;
 }
